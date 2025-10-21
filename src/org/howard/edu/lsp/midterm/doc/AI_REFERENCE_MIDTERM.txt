@@ -1,0 +1,46 @@
+
+
+AI Usage Summary
+Tool Used: ChatGPT (OpenAI GPT-5)
+Purpose:
+ChatGPT was used as a virtual study and writing assistant to:
+• Repository setup.
+• Validate program output and object-oriented structure (Question 4).
+• Provide rationale explanations for abstraction, interfaces, and inheritance.
+• Help draft references and documentation sections in clear academic language.
+• Review correctness and formatting for essay and reference sections.
+
+------------------------------------------------------------
+Prompts Asked ()
+1. “Also give the surfacial one for the doc as well for ai reference.”
+2. “Verify my essay question for general approach to refactoring the class(posted my answer that mentioned in doc file)”
+3. “Based on thw output for the Question 4:  How do the networked and batterypowered interfaces add behaviour to your concrete class, Is this design an example of multiple inheritance in Java?”
+Answer:
+
+“Also give the surfacial one for the doc as well for ai reference.”
+
+A concise (surface-level) AI reference was created summarizing: tool (ChatGPT), purpose (study/writing assist), sample prompts, a brief response summary, reflection on use, and citations. It’s suitable to include in org.howard.edu.lsp.midterm.doc to meet the exam requirement.
+
+“Verify my essay question for general approach to refactoring the class.”
+
+The recommended approach follows Riel’s heuristics: increase cohesion and reduce coupling by splitting the large helper into focused classes (e.g., GpaCalculator, RosterExporter, PaymentProcessor, PasswordValidator, EmailComposer, DateFormatter, CacheManager). Use small interfaces and dependency injection for external concerns 
+(payments, storage). Each class holds related data + behavior; side effects isolated; code becomes testable and easier to change.
+
+“Based on the output for Question 4: how do the Networked and BatteryPowered interfaces add behavior to your concrete class, and is this multiple inheritance in Java?”
+
+Networked adds the connection capability (connect(), disconnect(), isConnected()); BatteryPowered adds charge reporting/validation (getBatteryPercent(), setBatteryPercent()), so concrete devices compose only the capabilities they need. This is not class-based multiple inheritance: Java allows one superclass (Device) plus multiple interfaces; the design uses single inheritance + multiple interface implementation to get flexible, orthogonal behaviors without diamond problems.
+------------------------------------------------------------
+AI Response (Summary)
+ChatGPT provided structured explanations, emphasizing how `Device` is an abstract class for shared functionality, how `Networked` and `BatteryPowered` interfaces add independent behaviors, and why Java allows multiple interface inheritance but not multiple class inheritance. 
+It also formatted and reviewed essay responses for academic clarity.
+
+------------------------------------------------------------
+Reflection on AI Assistance
+The AI-generated material was reviewed, paraphrased, and edited for understanding and originality. 
+The tool was used ethically for educational support and explanation, not for direct code submission or plagiarism.
+
+------------------------------------------------------------
+References
+1. Java SE 21 Documentation – Abstract Classes and Interfaces
+2. Lecture Notes – Object-Oriented Design and Inheritance
+3. ChatGPT Session (October 20, 2025) 
