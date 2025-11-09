@@ -1,0 +1,60 @@
+AI Usage Summary
+Tool Used: ChatGPT (OpenAI, GPT-5)
+
+Purpose: To validate and explain the correctness of the Question 4 output, specifically around exception handling, interface implementation, and polymorphic behavior.
+
+The AI was used to:
+- Interpret the console output produced by the program.
+- Confirm the expected behavior of the BatteryPowered and Networked interfaces.
+- Clarify why heartbeat timestamps were identical.
+
+Prompt and Excerpt
+Prompt Asked:
+"this is the output I got after running program for q.4. eplain me the output of each classes:"
+== Exception test ==
+Caught expected exception: battery 0..100
+
+== Heartbeat timestamps BEFORE ==
+DL-101 lastHeartbeat=0
+TH-202 lastHeartbeat=0
+CA-303 lastHeartbeat=0
+
+== Heartbeat timestamps AFTER ==
+DL-101 lastHeartbeat=1761003716
+TH-202 lastHeartbeat=1761003716
+CA-303 lastHeartbeat=1761003716
+
+== Initial status via Device ==
+DoorLock[id=DL-101, loc=DormA-1F, conn=down, batt=85%]
+Thermostat[id=TH-202, loc=Library-2F, conn=down, tempC=21.5]
+Camera[id=CA-303, loc=Quad-North, conn=down, batt=72%]
+
+== Connect all Networked ==
+
+== Battery report (BatteryPowered) ==
+DoorLock battery = 85%
+Camera battery = 72%
+
+== Updated status via Device ==
+DoorLock[id=DL-101, loc=DormA-1F, conn=up, batt=85%]
+Thermostat[id=TH-202, loc=Library-2F, conn=up, tempC=21.5]
+Camera[id=CA-303, loc=Quad-North, conn=up, batt=72%]
+"
+
+AI Response (excerpt):
+"ChatGPT explained the output block by block, clarified why timestamps were identical, confirmed interface correctness, and summarized how polymorphism and exception handling worked together in the output."
+Explanation of Output
+The program demonstrates correct interface-based design and defensive validation. An IllegalArgumentException 
+with message battery 0..100 is thrown and caught when constructing a Camera with an invalid battery percentage, proving setBatteryPercent enforces bounds
+. The heartbeat values are 0 before any heartbeat calls, and identical positive timestamps after heartbeat() is invoked for each device; 
+they are identical because the heartbeat time source (seconds since epoch) returned the same integer value when the calls occurred in the same second. 
+Initial device status lines show the devices’ id, location, connection status (conn=down) and device-specific state (battery or temperature).
+ After invoking connect() on all Networked devices, their conn fields become up, which is reflected in the updated status block. 
+ Battery-only devices are reported via the BatteryPowered interface; the program iterates over devices, queries getBatteryPercent() where applicable, and prints the values.
+  Overall, the output confirms the devices implement
+ the required interfaces and that the program handles invalid input, heartbeat updates, network connection changes, and polymorphic reporting correctly.
+
+References
+1. Java SE 21 API Documentation – java.lang.IllegalArgumentException, java.time
+2. Lecture notes – Object-Oriented Interfaces and Polymorphism
+3. ChatGPT session (October 20, 2025) – explanation and validation of Question 4 output
